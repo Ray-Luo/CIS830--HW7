@@ -1,0 +1,49 @@
+1. Delete trivial columns
+   department, task_number, pe_taskid, arid, ar_submission_time, iow, cluster_name, account, priority, failed, ru_maxrss, ru_ixrss, ru_ismrss, ru_idrss, ru_isrss, ru_nswap, ru_inblock, ru_oublock, ru_msgsnd, ru_msgrcv, ru_nsignals, io
+
+2. Data clean stage 2 -- Delete more columns
+   host_name	group	owner	job_name	job_number	submission_time	start_time	end_time category  granted_pe  slots   project   exit_status ru_majflt
+
+3. highly correlated features
+
+   0 & 1 --> 0.998
+   0 & 5 --> 0.965
+   0 & 6 --> 0.876
+   0 & 9 --> 0.998
+
+   1 & 0 --> 0.998
+   1 & 5 --> 0.955
+   1 & 6 --> 0.854
+   1 & 9 --> 0.998
+
+   2 & 5 --> 0.865
+   2 & 6 --> 0.912
+
+   5 & 0 --> 0.965
+   5 & 1 --> 0.955
+   5 & 2 --> 0.865
+   5 & 6 --> 0.954
+   5 & 9 --> 0.967
+
+   6 & 0 --> 0.876
+   6 & 1 --> 0.854
+   6 & 2 --> 0.912
+   6 & 5 --> 0.954
+   6 & 9 --> 0.876
+
+   9 & 0 --> 0.998
+   9 & 1 --> 0.998
+   9 & 5 --> 0.976
+   9 & 6 --> 0.876
+
+
+4. delete most correlated features
+   ru_utime 1+1 0.769+0855
+   ru_wallclock 1+1  0.769+0.614
+   ru_nivcsw 1+1   0.614+0.855
+   
+   ru_minflt ru_stime  0.897
+
+   delete: ruminflt
+
+5. Scale and standardize before delete correlated features?
